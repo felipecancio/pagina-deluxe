@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-luxury-black text-white font-sans;
+  }
+
+  ::selection {
+    @apply bg-luxury-gold/30 text-white;
+  }
+}
+
+@layer components {
+  .gold-gradient-text {
+    @apply bg-gradient-to-r from-luxury-gold-light via-luxury-gold to-luxury-gold-dark bg-clip-text text-transparent;
+  }
+
+  .gold-line {
+    @apply h-px bg-gradient-to-r from-transparent via-luxury-gold/60 to-transparent;
+  }
+
+  .luxury-card {
+    @apply rounded-2xl border border-white/5 bg-luxury-graphite/50 backdrop-blur-sm transition-all duration-500;
+  }
+
+  .luxury-card:hover {
+    @apply border-luxury-gold/20 shadow-gold;
+  }
+
+  .btn-gold {
+    @apply relative inline-flex items-center justify-center rounded-full bg-gradient-to-r from-luxury-gold-dark via-luxury-gold to-luxury-gold-light px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-luxury-black transition-all duration-300 hover:shadow-gold-lg hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-gold-outline {
+    @apply inline-flex items-center justify-center rounded-full border border-luxury-gold/40 bg-transparent px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-luxury-gold transition-all duration-300 hover:border-luxury-gold hover:bg-luxury-gold/10;
+  }
+
+  .section-padding {
+    @apply px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32;
+  }
+
+  .masonry-item {
+    @apply overflow-hidden rounded-xl transition-transform duration-700 ease-out;
+  }
+
+  .masonry-item:hover {
+    @apply scale-[1.02];
+  }
+}
+
+@layer utilities {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary {
+  list-style: none;
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+/* Hide scrollbar for carousel */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
