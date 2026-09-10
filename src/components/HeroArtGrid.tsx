@@ -1,11 +1,26 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { GALLERY_IMAGES } from "@/lib/constants";
 import { ArtImage } from "./ArtImage";
 
 export function HeroArtGrid() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const apply = () => setShow(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  if (!show) return null;
+
   const desktopImages = GALLERY_IMAGES.slice(0, 10);
 
   return (
-    <div className="mt-12 hidden lg:grid lg:grid-cols-5 lg:gap-3">
+    <div className="mt-12 grid grid-cols-5 gap-3">
       {desktopImages.map((id) => (
         <div
           key={id}

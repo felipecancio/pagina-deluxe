@@ -55,7 +55,7 @@ export function Gallery() {
             {MOSAIC_PACK.map((id) => (
               <MosaicTile
                 key={id}
-                src={`/images/${id}.png`}
+                src={`/images/${id}.webp`}
                 alt={`Diseño premium Deluxe ${id}`}
               />
             ))}

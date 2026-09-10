@@ -28,6 +28,7 @@ export function ArtCarousel({
   const velocityRef = useRef(defaultVelocity);
   const rafRef = useRef<number>(0);
   const isDraggingRef = useRef(false);
+  const visibleRef = useRef(true);
   const dragStartXRef = useRef(0);
   const dragStartPosRef = useRef(0);
   const lastMoveXRef = useRef(0);
@@ -117,7 +118,7 @@ export function ArtCarousel({
     observer.observe(track);
 
     const animate = () => {
-      if (!isDraggingRef.current) {
+      if (visibleRef.current && !isDraggingRef.current) {
         positionRef.current += velocityRef.current;
       }
       applyWrap();
@@ -125,10 +126,16 @@ export function ArtCarousel({
       rafRef.current = requestAnimationFrame(animate);
     };
 
+    const io = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting;
+    });
+    io.observe(track);
+
     rafRef.current = requestAnimationFrame(animate);
     return () => {
       cancelAnimationFrame(rafRef.current);
       observer.disconnect();
+      io.disconnect();
     };
   }, [applyWrap, direction, images]);
 
@@ -176,7 +183,7 @@ export function ArtCarousel({
               className="relative h-52 w-[130px] shrink-0 overflow-hidden rounded-lg"
             >
               <ArtImage
-                src={`${imageBasePath}/${id}.png`}
+                src={`${imageBasePath}/${id}.webp`}
                 alt={`Diseño premium Deluxe ${id}`}
                 fill
                 sizes="130px"

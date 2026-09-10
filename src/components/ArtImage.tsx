@@ -16,7 +16,7 @@ export function ArtImage({
   fill,
   ...props
 }: ArtImageProps) {
-  const imageSrc = src ?? `/images/${imageId}.png`;
+  const imageSrc = src ?? `/images/${imageId}.webp`;
   const imageAlt = alt ?? `Diseño premium Deluxe ${imageId ?? ""}`;
 
   const fillClasses = fill
@@ -31,7 +31,7 @@ export function ArtImage({
       className={`object-cover ${fillClasses} ${className}`}
       priority={priority}
       loading={priority ? undefined : loading}
-      quality={85}
+      quality={75}
       {...props}
     />
   );
@@ -44,7 +44,7 @@ export function MockupImage({
 }: Omit<ImageProps, "src" | "alt">) {
   return (
     <Image
-      src="/images/mockup.png"
+      src="/images/mockup.webp"
       alt="Mega Pack Deluxe — Colección Premium Criativarts"
       className={`bg-transparent object-contain ${className}`}
       priority={priority}

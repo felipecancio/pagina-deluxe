@@ -2,6 +2,7 @@ import { AnimatedSection } from "../AnimatedSection";
 import { CheckoutCTA } from "../CheckoutCTA";
 import { IconCheck } from "../Icons";
 import { FINAL_BENEFITS } from "@/lib/constants";
+import Image from "next/image";
 
 export function FinalCTA() {
   return (
@@ -25,13 +26,14 @@ export function FinalCTA() {
 
           <div className="mx-auto mt-10 flex items-center justify-center">
             <div className="animate-float">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/mockup-hero.png"
+              <Image
+                src="/images/mockup-hero.webp"
                 alt="Mega Pack Deluxe — Colección Premium Criativarts"
                 width={720}
                 height={550}
-                className="w-full max-w-[400px] object-contain sm:max-w-[420px] lg:max-w-[520px]"
+                quality={80}
+                sizes="(min-width: 1024px) 520px, 420px"
+                className="h-auto w-full max-w-[400px] object-contain sm:max-w-[420px] lg:max-w-[520px]"
               />
             </div>
           </div>

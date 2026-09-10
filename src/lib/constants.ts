@@ -205,10 +205,10 @@ export const GALLERY_IMAGES_ROW2 = [
 export const GALLERY_FEATURED = [1, 8, 12, 16, 20, 3, 10, 18] as const;
 
 export const MOSAIC_EXCLUSIVE = [
-  "/images/exclusive/1.jpg",
-  "/images/exclusive/2.jpg",
-  "/images/exclusive/3.jpg",
-  "/images/exclusive/4.jpg",
+  "/images/exclusive/1.webp",
+  "/images/exclusive/2.webp",
+  "/images/exclusive/3.webp",
+  "/images/exclusive/4.webp",
 ] as const;
 
 export const MOSAIC_PACK = [
