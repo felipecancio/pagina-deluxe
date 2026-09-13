@@ -9,6 +9,11 @@ interface ArtCarouselProps {
   imageBasePath?: string;
 }
 
+const CARD_WIDTH = 130;
+const CARD_GAP = 12;
+const ARROW_CARDS = 3;
+const ARROW_STEP = (CARD_WIDTH + CARD_GAP) * ARROW_CARDS;
+
 function wrapPosition(pos: number, halfWidth: number): number {
   if (halfWidth <= 0) return pos;
   while (pos <= -halfWidth) pos += halfWidth;
@@ -27,13 +32,7 @@ export function ArtCarousel({
   const defaultVelocity = direction === "left" ? -0.45 : 0.45;
   const velocityRef = useRef(defaultVelocity);
   const rafRef = useRef<number>(0);
-  const isDraggingRef = useRef(false);
   const visibleRef = useRef(true);
-  const dragStartXRef = useRef(0);
-  const dragStartPosRef = useRef(0);
-  const lastMoveXRef = useRef(0);
-  const lastMoveTimeRef = useRef(0);
-  const releaseVelocityRef = useRef(defaultVelocity);
   const initializedRef = useRef(false);
 
   const applyWrap = useCallback(() => {
@@ -42,62 +41,20 @@ export function ArtCarousel({
 
   const nudge = useCallback(
     (nav: "prev" | "next") => {
-      const step = 156;
-      const scrollForward = direction === "left" ? -step * 2 : step * 2;
-      const scrollBack = direction === "left" ? step * 2 : -step * 2;
+      const forward = direction === "left" ? -ARROW_STEP : ARROW_STEP;
+      const back = -forward;
 
-      positionRef.current += nav === "next" ? scrollForward : scrollBack;
+      positionRef.current += nav === "next" ? forward : back;
       applyWrap();
-      velocityRef.current = nav === "next" ? defaultVelocity * 5.5 : -defaultVelocity * 5.5;
+      velocityRef.current =
+        nav === "next" ? defaultVelocity * 5.5 : -defaultVelocity * 5.5;
 
       window.setTimeout(() => {
-        if (!isDraggingRef.current) velocityRef.current = defaultVelocity;
+        velocityRef.current = defaultVelocity;
       }, 900);
     },
     [applyWrap, defaultVelocity, direction]
   );
-
-  const handlePointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
-    isDraggingRef.current = true;
-    dragStartXRef.current = e.clientX;
-    dragStartPosRef.current = positionRef.current;
-    lastMoveXRef.current = e.clientX;
-    lastMoveTimeRef.current = Date.now();
-    velocityRef.current = 0;
-    e.currentTarget.setPointerCapture(e.pointerId);
-  }, []);
-
-  const handlePointerMove = useCallback(
-    (e: React.PointerEvent<HTMLDivElement>) => {
-      if (!isDraggingRef.current) return;
-      const delta = e.clientX - dragStartXRef.current;
-      positionRef.current = dragStartPosRef.current + delta;
-      applyWrap();
-
-      const now = Date.now();
-      const elapsed = now - lastMoveTimeRef.current;
-      if (elapsed > 0) {
-        releaseVelocityRef.current = (e.clientX - lastMoveXRef.current) / elapsed;
-      }
-      lastMoveXRef.current = e.clientX;
-      lastMoveTimeRef.current = now;
-    },
-    [applyWrap]
-  );
-
-  const handlePointerUp = useCallback(() => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-    applyWrap();
-    velocityRef.current =
-      Math.abs(releaseVelocityRef.current) > 0.1
-        ? releaseVelocityRef.current * 16
-        : defaultVelocity;
-
-    window.setTimeout(() => {
-      if (!isDraggingRef.current) velocityRef.current = defaultVelocity;
-    }, 1500);
-  }, [applyWrap, defaultVelocity]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -118,7 +75,7 @@ export function ArtCarousel({
     observer.observe(track);
 
     const animate = () => {
-      if (visibleRef.current && !isDraggingRef.current) {
+      if (visibleRef.current) {
         positionRef.current += velocityRef.current;
       }
       applyWrap();
@@ -142,7 +99,7 @@ export function ArtCarousel({
   const doubled = [...images, ...images];
 
   return (
-    <div className="relative w-full min-w-0 overflow-hidden">
+    <div className="relative w-full min-w-0 overflow-hidden touch-pan-y">
       <button
         type="button"
         onClick={() => nudge("prev")}
@@ -165,17 +122,13 @@ export function ArtCarousel({
         </svg>
       </button>
 
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden touch-pan-y">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-luxury-black to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-luxury-black to-transparent" />
 
         <div
           ref={trackRef}
-          className="flex w-max cursor-grab touch-none gap-3 active:cursor-grabbing will-change-transform"
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={handlePointerUp}
+          className="pointer-events-none flex w-max select-none gap-3 will-change-transform"
         >
           {doubled.map((id, i) => (
             <div

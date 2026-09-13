@@ -73,7 +73,7 @@ export function Hero() {
               un precio más alto. Acceso inmediato. Uso comercial incluido.
             </p>
 
-            <div className="relative -mx-6 my-8 max-w-[calc(100%+3rem)] w-[calc(100%+3rem)] min-w-0 overflow-hidden space-y-4 lg:hidden">
+            <div className="relative -mx-6 my-8 max-w-[calc(100%+3rem)] w-[calc(100%+3rem)] min-w-0 overflow-hidden space-y-4 touch-pan-y lg:hidden">
               <ArtCarousel images={CAROUSEL_ROW1} direction="left" />
               <ArtCarousel
                 images={CAROUSEL_ROW2}
