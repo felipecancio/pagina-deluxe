@@ -142,7 +142,7 @@ export function ArtCarousel({
   const doubled = [...images, ...images];
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full min-w-0 overflow-hidden">
       <button
         type="button"
         onClick={() => nudge("prev")}
