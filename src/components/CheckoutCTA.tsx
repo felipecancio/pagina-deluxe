@@ -1,4 +1,7 @@
+"use client";
+
 import { CHECKOUT_URL, CTA_LABEL } from "@/lib/constants";
+import { META_CONTENT, trackMeta } from "@/lib/meta-pixel";
 
 interface CheckoutCTAProps {
   className?: string;
@@ -28,6 +31,7 @@ export function CheckoutCTA({
       <a
         href={CHECKOUT_URL}
         className={`btn-gold w-full max-w-xl sm:w-auto ${yesSizeClasses}`}
+        onClick={() => trackMeta("InitiateCheckout", { ...META_CONTENT })}
       >
         {label}
       </a>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { trackMeta } from "@/lib/meta-pixel";
 
 const WHATSAPP_NUMBER = "5522998455928";
 const WHATSAPP_MESSAGE =
@@ -25,6 +26,7 @@ export function WhatsAppSupport() {
   }, [clearTimer]);
 
   const openWhatsApp = useCallback(() => {
+    trackMeta("Contact", { content_name: "WhatsApp" });
     closeBox();
     window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer");
   }, [closeBox]);
