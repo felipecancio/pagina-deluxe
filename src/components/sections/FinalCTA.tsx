@@ -7,11 +7,8 @@ import Image from "next/image";
 export function FinalCTA() {
   return (
     <AnimatedSection>
-      <section
-        id="comprar"
-        className="section-padding bg-gradient-to-b from-luxury-black via-luxury-graphite/40 to-luxury-black"
-      >
-        <div className="mx-auto max-w-4xl text-center">
+      <section className="section-padding bg-gradient-to-b from-luxury-black via-luxury-graphite/40 to-luxury-black">
+        <div id="comprar" className="mx-auto max-w-4xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-luxury-gold">
             Empieza hoy
           </p>
@@ -50,7 +47,7 @@ export function FinalCTA() {
           </ul>
 
           <div className="mt-10">
-            <CheckoutCTA size="large" />
+            <CheckoutCTA size="large" checkout />
           </div>
 
           <p className="mt-6 flex items-center justify-center gap-2.5 text-xs font-light uppercase tracking-[0.18em] text-white/30">

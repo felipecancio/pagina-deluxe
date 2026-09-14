@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import { MetaPixel } from "@/components/MetaPixel";
+import { PricingScroll } from "@/components/PricingScroll";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -52,6 +53,7 @@ export default function RootLayout({
     <html lang="es" className={`${cormorant.variable} ${outfit.variable}`}>
       <body className="antialiased">
         <MetaPixel />
+        <PricingScroll />
         {children}
       </body>
     </html>

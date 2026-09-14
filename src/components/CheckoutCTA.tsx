@@ -9,6 +9,7 @@ interface CheckoutCTAProps {
   showHint?: boolean;
   align?: "center" | "start";
   label?: string;
+  checkout?: boolean;
 }
 
 export function CheckoutCTA({
@@ -17,6 +18,7 @@ export function CheckoutCTA({
   showHint = true,
   align = "center",
   label = CTA_LABEL,
+  checkout = false,
 }: CheckoutCTAProps) {
   const yesSizeClasses =
     size === "large"
@@ -29,9 +31,14 @@ export function CheckoutCTA({
   return (
     <div className={`flex flex-col gap-3 ${alignClasses} ${className}`}>
       <a
-        href={CHECKOUT_URL}
+        href={checkout ? CHECKOUT_URL : "#comprar"}
+        id={checkout ? "cta-checkout" : undefined}
         className={`btn-gold w-full max-w-xl sm:w-auto ${yesSizeClasses}`}
-        onClick={() => trackMeta("InitiateCheckout", { ...META_CONTENT })}
+        onClick={
+          checkout
+            ? () => trackMeta("InitiateCheckout", { ...META_CONTENT })
+            : undefined
+        }
       >
         {label}
       </a>
