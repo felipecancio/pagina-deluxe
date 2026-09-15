@@ -21,6 +21,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mp-deluxe.vercel.app"),
   title: "Mega Pack Deluxe — Criativarts",
   description:
     "La colección más exclusiva de Criativarts. Más de 200 diseños premium con alto valor percibido, uso comercial y actualizaciones de por vida para elevar tus productos.",
@@ -38,8 +39,26 @@ export const metadata: Metadata = {
     title: "Mega Pack Deluxe — Criativarts",
     description:
       "Diseños exclusivos de alto valor percibido para cuadros, playeras, DTF y productos premium.",
+    url: "/",
+    siteName: "Mega Pack Deluxe",
     type: "website",
     locale: "es_LA",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        type: "image/jpeg",
+        alt: "Mega Pack Deluxe — Colección Premium Criativarts",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mega Pack Deluxe — Criativarts",
+    description:
+      "Diseños exclusivos de alto valor percibido para cuadros, playeras, DTF y productos premium.",
+    images: ["/og.jpg"],
   },
   robots: { index: true, follow: true },
 };
