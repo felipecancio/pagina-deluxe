@@ -87,28 +87,26 @@ export const INCLUDED = [
   },
 ] as const;
 
-export const COMPARISON = {
-  standard: {
-    title: "Packs genéricos",
-    items: [
-      "Diseños que todo el mundo ya usa",
-      "Calidad irregular",
-      "Se ven baratos en el producto",
-      "El cliente compara solo por precio",
-      "Poco margen para tu negocio",
-    ],
+export const TESTIMONIALS = [
+  {
+    name: "Camilo Soto",
+    photo: "/images/testimonials/camilo.webp",
+    quote:
+      "La verdad tenía recelo de comprar. Pensé que iba a ser otro pack más de los que ya todos usan. No. Se nota que está seleccionado, y en el producto se ve lujo.",
   },
-  deluxe: {
-    title: "Mega Pack Deluxe",
-    items: [
-      "Diseños exclusivos y curados",
-      "Acabado de galería",
-      "Alto valor percibido",
-      "Productos que se venden más caro",
-      "Actualizaciones de por vida",
-    ],
+  {
+    name: "Mateo Rivas",
+    photo: "/images/testimonials/mateo.webp",
+    quote:
+      "El contenido completo es tan bueno como las imágenes que muestran en la página, incluso diría que es mejor. La verdad, ¡felicitaciones por el trabajo!",
   },
-} as const;
+  {
+    name: "Daniel Peña",
+    photo: "/images/testimonials/daniel-pena.webp",
+    quote:
+      "Definitivamente no es otro pack más de internet. El contenido está muy bien hecho y tiene un estilo original. Lo recomiendo totalmente.",
+  },
+] as const;
 
 export const USE_CASES = [
   { title: "Cuadros", icon: "frame" },
@@ -143,9 +141,9 @@ export const HOW_IT_WORKS = [
 ] as const;
 
 export const FINAL_BENEFITS = [
-  "+200 diseños exclusivos de alto valor percibido",
+  "+200 diseños JPG/PNG exclusivos de alto valor percibido",
   "Licencia de uso comercial incluida",
-  "Alta resolución para gran formato, DTF y sublimación",
+  "Alta resolución para gran formatos (hasta 2,5 metros)",
   "Actualizaciones gratuitas de por vida",
   "Acceso inmediato después de la compra",
   "Ideal para cuadros, playeras, tazas y regalos premium",
@@ -155,7 +153,7 @@ export const FAQS = [
   {
     question: "¿Qué incluye el Mega Pack Deluxe?",
     answer:
-      "Una colección premium con más de 200 diseños exclusivos, curados para verse sofisticados en el producto final. Incluye uso comercial, archivos en alta resolución y actualizaciones de por vida.",
+      "Una colección premium con más de 200 diseños JPG/PNG exclusivos, curados para verse sofisticados en el producto final. Incluye uso comercial, archivos en alta resolución hasta 2,5 metros y actualizaciones de por vida.",
   },
   {
     question: "¿Puedo usar los diseños para vender?",

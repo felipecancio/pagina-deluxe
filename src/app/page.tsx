@@ -4,9 +4,9 @@ import { TrustBar } from "@/components/sections/TrustBar";
 import { Problem } from "@/components/sections/Problem";
 import { Positioning } from "@/components/sections/ExclusiveOffer";
 import { Gallery } from "@/components/sections/Gallery";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { WhyDeluxe } from "@/components/sections/WhyDeluxe";
 import { Benefits } from "@/components/sections/Benefits";
-import { Comparison } from "@/components/sections/Comparison";
 import { Guarantee } from "@/components/sections/Guarantee";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { FAQ } from "@/components/sections/FAQ";
@@ -22,9 +22,9 @@ export default function Home() {
       <Problem />
       <Positioning />
       <Gallery />
+      <Testimonials />
       <WhyDeluxe />
       <Benefits />
-      <Comparison />
       <Guarantee />
       <FinalCTA />
       <FAQ />
