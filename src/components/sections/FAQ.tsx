@@ -1,26 +1,27 @@
 "use client";
 
 import { AnimatedSection } from "../AnimatedSection";
-import { FAQS } from "@/lib/constants";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
-export function FAQ() {
+export function FAQ({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).faq;
   return (
     <AnimatedSection>
       <section id="faq" className="section-padding">
         <div className="mx-auto max-w-3xl">
           <div className="mb-14 text-center">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-luxury-gold">
-              Preguntas frecuentes
+              {t.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-4xl font-light md:text-5xl">
-              Todo claro,{" "}
-              <span className="gold-gradient-text italic">sin letras chicas</span>
+              {t.titleBefore}{" "}
+              <span className="gold-gradient-text italic">{t.titleHighlight}</span>
             </h2>
             <div className="gold-line mx-auto mt-6 w-16" />
           </div>
 
           <div className="divide-y divide-white/10 border-y border-white/10">
-            {FAQS.map((item) => (
+            {t.items.map((item) => (
               <details key={item.question} className="group py-1">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left">
                   <span className="font-display text-lg font-medium text-white/90 md:text-xl">

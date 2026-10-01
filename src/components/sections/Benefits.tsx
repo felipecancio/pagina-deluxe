@@ -1,25 +1,26 @@
 import { AnimatedSection } from "../AnimatedSection";
 import { FeatureIcon } from "../Icons";
-import { USE_CASES } from "@/lib/constants";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
-export function Benefits() {
+export function Benefits({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).benefits;
   return (
     <AnimatedSection>
       <section className="section-padding">
         <div className="mx-auto max-w-6xl">
           <div className="mb-16 text-center">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-luxury-gold">
-              Aplicaciones
+              {t.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-4xl font-light md:text-5xl">
-              Diseños premium para{" "}
-              <span className="gold-gradient-text italic">tu negocio</span>
+              {t.titleBefore}{" "}
+              <span className="gold-gradient-text italic">{t.titleHighlight}</span>
             </h2>
             <div className="gold-line mx-auto mt-6 w-16" />
           </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {USE_CASES.map((item) => (
+            {t.cases.map((item) => (
               <div
                 key={item.title}
                 className="luxury-card group flex flex-col items-center p-6 text-center"

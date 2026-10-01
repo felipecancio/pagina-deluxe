@@ -2,14 +2,14 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { trackMeta } from "@/lib/meta-pixel";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
 const WHATSAPP_NUMBER = "5522998455928";
-const WHATSAPP_MESSAGE =
-  "Hola, me gustaría obtener más información sobre el Mega Pack Deluxe";
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 const CONFIRM_MS = 8000;
 
-export function WhatsAppSupport() {
+export function WhatsAppSupport({ locale }: { locale: Locale }) {
+  const copy = getDictionary(locale).whatsapp;
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(copy.message)}`;
   const [open, setOpen] = useState(false);
   const timerRef = useRef<number | null>(null);
 
@@ -28,8 +28,8 @@ export function WhatsAppSupport() {
   const openWhatsApp = useCallback(() => {
     trackMeta("Contact", { content_name: "WhatsApp" });
     closeBox();
-    window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer");
-  }, [closeBox]);
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  }, [closeBox, whatsappUrl]);
 
   const handleIconClick = useCallback(() => {
     if (open) {
@@ -54,7 +54,7 @@ export function WhatsAppSupport() {
           onClick={openWhatsApp}
           className="rounded-full border border-luxury-gold/40 bg-luxury-black/95 px-4 py-2 text-xs font-light tracking-wide text-white/85 shadow-gold backdrop-blur-md transition-colors hover:border-luxury-gold hover:text-luxury-gold"
         >
-          Hablar con representante
+          {copy.talk}
         </button>
       )}
 
@@ -64,8 +64,8 @@ export function WhatsAppSupport() {
         aria-expanded={open}
         aria-label={
           open
-            ? "Hablar con representante por WhatsApp"
-            : "Abrir soporte de WhatsApp"
+            ? copy.talkAria
+            : copy.openAria
         }
         className="flex h-12 w-12 items-center justify-center rounded-full border border-luxury-gold/40 bg-luxury-black/90 text-luxury-gold shadow-gold backdrop-blur-md transition-all duration-300 hover:border-luxury-gold hover:shadow-gold-lg hover:scale-105 active:scale-95"
       >

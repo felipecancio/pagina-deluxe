@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import { GALLERY_IMAGES } from "@/lib/constants";
 import { ArtImage } from "./ArtImage";
+import type { Locale } from "@/lib/i18n";
 
-export function HeroArtGrid() {
+export function HeroArtGrid({ locale }: { locale: Locale }) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ export function HeroArtGrid() {
         >
           <ArtImage
             imageId={id}
+            locale={locale}
             fill
             sizes="20vw"
             className="object-cover"

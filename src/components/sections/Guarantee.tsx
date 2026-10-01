@@ -1,6 +1,7 @@
 import { AnimatedSection } from "../AnimatedSection";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
-function ExclusiveSeal() {
+function ExclusiveSeal({ top, bottom }: { top: string; bottom: string }) {
   return (
     <div className="relative mx-auto h-40 w-40 shrink-0 md:h-44 md:w-44">
       <svg viewBox="0 0 160 160" className="h-full w-full" aria-hidden="true">
@@ -27,7 +28,7 @@ function ExclusiveSeal() {
           letterSpacing="2.2"
           fontFamily="Georgia, serif"
         >
-          GARANTÍA
+          {top}
         </text>
         <text
           x="80"
@@ -38,14 +39,15 @@ function ExclusiveSeal() {
           letterSpacing="1.6"
           fontFamily="Georgia, serif"
         >
-          EXCLUSIVA
+          {bottom}
         </text>
       </svg>
     </div>
   );
 }
 
-export function Guarantee() {
+export function Guarantee({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).guarantee;
   return (
     <AnimatedSection>
       <section className="section-padding !py-16 md:!py-20">
@@ -55,21 +57,20 @@ export function Guarantee() {
             <div className="absolute -bottom-12 -left-12 h-40 w-40 rounded-full bg-luxury-gold/5 blur-3xl" />
 
             <div className="relative">
-              <ExclusiveSeal />
+              <ExclusiveSeal top={t.sealTop} bottom={t.sealBottom} />
 
               <p className="mt-6 text-xs font-medium uppercase tracking-[0.3em] text-luxury-gold">
-                Compra protegida
+                {t.eyebrow}
               </p>
               <h2 className="mt-3 font-display text-3xl font-light md:text-4xl">
-                Garantía{" "}
-                <span className="gold-gradient-text italic">incondicional</span>
+                {t.titleBefore}{" "}
+                <span className="gold-gradient-text italic">{t.titleHighlight}</span>
               </h2>
               <div className="gold-line mx-auto mt-5 w-16" />
               <p className="mx-auto mt-6 max-w-lg text-sm font-light leading-relaxed text-white/60 md:text-base">
-                Si no estás 100% satisfecho con el Mega Pack Deluxe, pides tu
-                dinero de vuelta. Sin letras chicas y{" "}
-                <span className="text-luxury-gold/80">en cualquier momento</span>
-                . Tu compra está protegida de principio a fin.
+                {t.before}
+                <span className="text-luxury-gold/80">{t.highlight}</span>
+                {t.after}
               </p>
             </div>
           </div>

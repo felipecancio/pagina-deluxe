@@ -1,6 +1,7 @@
 "use client";
 
-import { CHECKOUT_URL, CTA_LABEL } from "@/lib/constants";
+import { CHECKOUT_URL } from "@/lib/constants";
+import { getDictionary, type Locale } from "@/lib/i18n";
 import { META_CONTENT, trackMeta } from "@/lib/meta-pixel";
 
 interface CheckoutCTAProps {
@@ -10,6 +11,7 @@ interface CheckoutCTAProps {
   align?: "center" | "start";
   label?: string;
   checkout?: boolean;
+  locale: Locale;
 }
 
 export function CheckoutCTA({
@@ -17,9 +19,11 @@ export function CheckoutCTA({
   size = "default",
   showHint = true,
   align = "center",
-  label = CTA_LABEL,
+  label,
   checkout = false,
+  locale,
 }: CheckoutCTAProps) {
+  const copy = getDictionary(locale);
   const yesSizeClasses =
     size === "large"
       ? "px-10 py-5 text-base tracking-[0.12em] md:tracking-[0.15em]"
@@ -40,11 +44,11 @@ export function CheckoutCTA({
             : undefined
         }
       >
-        {label}
+        {label ?? copy.cta}
       </a>
       {showHint && (
         <p className="text-xs font-light tracking-wide text-white/40">
-          Acceso inmediato · Uso comercial · Actualizaciones de por vida
+          {copy.ctaHint}
         </p>
       )}
     </div>

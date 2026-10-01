@@ -1,6 +1,8 @@
 import { AnimatedSection } from "../AnimatedSection";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
-export function Positioning() {
+export function Positioning({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).positioning;
   return (
     <AnimatedSection>
       <div className="section-padding !py-12">
@@ -24,14 +26,13 @@ export function Positioning() {
               </div>
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.25em] text-luxury-gold">
-                  No es cantidad. Es curaduría.
+                  {t.eyebrow}
                 </p>
                 <h2 className="mt-1 font-display text-2xl font-light md:text-3xl">
-                  La colección más exclusiva de Criativarts
+                  {t.title}
                 </h2>
                 <p className="mt-2 text-sm text-white/50">
-                  Creada para emprendedores y negocios que quieren productos con
-                  cara de lujo — y un margen que lo acompañe.
+                  {t.body}
                 </p>
               </div>
             </div>

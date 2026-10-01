@@ -1,25 +1,26 @@
 import { AnimatedSection } from "../AnimatedSection";
 import { FeatureIcon } from "../Icons";
-import { WHY_DELUXE } from "@/lib/constants";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
-export function WhyDeluxe() {
+export function WhyDeluxe({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).why;
   return (
     <AnimatedSection>
       <section className="section-padding bg-luxury-graphite/30">
         <div className="mx-auto max-w-6xl">
           <div className="mb-16 text-center">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-luxury-gold">
-              La diferencia
+              {t.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-4xl font-light md:text-5xl">
-              Por qué tus productos se ven más{" "}
-              <span className="gold-gradient-text italic">caros</span>
+              {t.titleBefore}{" "}
+              <span className="gold-gradient-text italic">{t.titleHighlight}</span>
             </h2>
             <div className="gold-line mx-auto mt-6 w-16" />
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {WHY_DELUXE.map((item, i) => (
+            {t.items.map((item, i) => (
               <div
                 key={item.title}
                 className="luxury-card group p-8"

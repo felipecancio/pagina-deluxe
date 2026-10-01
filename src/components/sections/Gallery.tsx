@@ -2,6 +2,7 @@ import { AnimatedSection } from "../AnimatedSection";
 import { ArtImage } from "../ArtImage";
 import { CheckoutCTA } from "../CheckoutCTA";
 import { MOSAIC_EXCLUSIVE, MOSAIC_PACK } from "@/lib/constants";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
 function MosaicTile({
   src,
@@ -24,23 +25,23 @@ function MosaicTile({
   );
 }
 
-export function Gallery() {
+export function Gallery({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).gallery;
   return (
     <AnimatedSection>
       <section id="galeria" className="section-padding !pt-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-14 text-center">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-luxury-gold">
-              Vista previa
+              {t.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-4xl font-light md:text-5xl">
-              Arte que se siente{" "}
-              <span className="gold-gradient-text italic">exclusivo</span>
+              {t.titleBefore}{" "}
+              <span className="gold-gradient-text italic">{t.titleHighlight}</span>
             </h2>
             <div className="gold-line mx-auto mt-6 w-16" />
             <p className="mx-auto mt-6 max-w-2xl text-sm font-light leading-relaxed text-white/55 md:text-base">
-              Una muestra de la curaduría Deluxe. Piezas pensadas para verse
-              sofisticadas en el producto final — no para llenar carpetas.
+              {t.body}
             </p>
           </div>
 
@@ -49,24 +50,24 @@ export function Gallery() {
               <MosaicTile
                 key={src}
                 src={src}
-                alt={`Diseño exclusivo Deluxe ${i + 1}`}
+                alt={`${t.exclusiveAlt} ${i + 1}`}
               />
             ))}
             {MOSAIC_PACK.map((id) => (
               <MosaicTile
                 key={id}
                 src={`/images/${id}.webp`}
-                alt={`Diseño premium Deluxe ${id}`}
+                alt={`${t.premiumAlt} ${id}`}
               />
             ))}
           </div>
 
           <p className="mt-8 text-center text-sm font-light text-white/40">
-            Esto es solo una muestra. El pack completo incluye más de 200 diseños exclusivos.
+            {t.footnote}
           </p>
 
           <div className="mt-8 flex justify-center">
-            <CheckoutCTA />
+            <CheckoutCTA locale={locale} />
           </div>
         </div>
       </section>

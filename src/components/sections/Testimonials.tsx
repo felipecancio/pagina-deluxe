@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { AnimatedSection } from "../AnimatedSection";
-import { TESTIMONIALS } from "@/lib/constants";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
 function Stars() {
   return (
@@ -14,11 +14,11 @@ function Stars() {
   );
 }
 
-function VerifiedBadge() {
+function VerifiedBadge({ label }: { label: string }) {
   return (
     <span
       className="flex h-5 w-5 items-center justify-center rounded-full bg-luxury-gold text-luxury-black"
-      aria-label="Verificado"
+      aria-label={label}
     >
       <svg className="h-2.5 w-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
         <path d="M5 12l5 5L20 7" strokeLinecap="round" strokeLinejoin="round" />
@@ -27,31 +27,32 @@ function VerifiedBadge() {
   );
 }
 
-export function Testimonials() {
+export function Testimonials({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).testimonials;
   return (
     <AnimatedSection>
       <section className="section-padding !pt-4 md:!pt-8">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 text-center md:mb-16">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-luxury-gold">
-              Testimonios
+              {t.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-4xl font-light md:text-5xl">
-              Lo que dicen quienes ya tienen el{" "}
-              <span className="gold-gradient-text italic">Deluxe</span>
+              {t.titleBefore}{" "}
+              <span className="gold-gradient-text italic">{t.titleHighlight}</span>
             </h2>
             <div className="gold-line mx-auto mt-6 w-16" />
           </div>
 
           <div className="grid gap-5 md:grid-cols-3 md:gap-6">
-            {TESTIMONIALS.map((item) => (
+            {t.items.map((item) => (
               <article
                 key={item.name}
                 className="luxury-card flex flex-col p-6 md:p-8"
               >
                 <div className="mb-5 flex items-center justify-between">
                   <Stars />
-                  <VerifiedBadge />
+                  <VerifiedBadge label={t.verified} />
                 </div>
 
                 <p className="flex-1 font-display text-[17px] font-light italic leading-relaxed text-white/70">

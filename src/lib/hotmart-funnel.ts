@@ -1,7 +1,7 @@
 const ACCEPT_PATTERNS =
-  /sí|si\b|quiero|aceptar|agregar|comprar|deluxe|también|tambien|yes|accept/i;
+  /s[ií]\b|sim\b|quiero|quero|aceptar|aceitar|agregar|adicionar|comprar|deluxe|tambi[eé]n|tambien|yes|accept/i;
 const DECLINE_PATTERNS =
-  /no quiero|rechazar|declinar|omitir|no gracias|pasar|decline|skip|cancelar/i;
+  /n[aã]o quero|nao quero|no quiero|rechazar|recusar|declinar|omitir|no gracias|n[aã]o,? obrigado|pasar|pular|decline|skip|cancelar/i;
 
 export function getElementLabel(el: HTMLElement): string {
   return (

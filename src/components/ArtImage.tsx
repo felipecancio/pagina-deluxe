@@ -1,15 +1,18 @@
 import Image, { ImageProps } from "next/image";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
 interface ArtImageProps extends Omit<ImageProps, "src" | "alt" | "id"> {
   imageId?: number;
   src?: string;
   alt?: string;
+  locale?: Locale;
 }
 
 export function ArtImage({
   imageId,
   src,
   alt,
+  locale = "es",
   className = "",
   priority,
   loading,
@@ -17,7 +20,7 @@ export function ArtImage({
   ...props
 }: ArtImageProps) {
   const imageSrc = src ?? `/images/${imageId}.webp`;
-  const imageAlt = alt ?? `Diseño premium Deluxe ${imageId ?? ""}`;
+  const imageAlt = alt ?? `${getDictionary(locale).artAlt} ${imageId ?? ""}`;
 
   const fillClasses = fill
     ? "absolute inset-0 h-full w-full"
@@ -45,7 +48,7 @@ export function MockupImage({
   return (
     <Image
       src="/images/mockup.webp"
-      alt="Mega Pack Deluxe — Colección Premium Criativarts"
+      alt="Mega Pack Deluxe — Criativarts"
       className={`bg-transparent object-contain ${className}`}
       priority={priority}
       quality={90}

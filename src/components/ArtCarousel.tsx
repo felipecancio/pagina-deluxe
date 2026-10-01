@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import { ArtImage } from "./ArtImage";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
 interface ArtCarouselProps {
   images: readonly number[];
   direction?: "left" | "right";
   imageBasePath?: string;
+  locale: Locale;
 }
 
 const CARD_WIDTH = 130;
@@ -25,7 +27,9 @@ export function ArtCarousel({
   images,
   direction = "left",
   imageBasePath = "/images",
+  locale,
 }: ArtCarouselProps) {
+  const labels = getDictionary(locale);
   const trackRef = useRef<HTMLDivElement>(null);
   const halfWidthRef = useRef(0);
   const positionRef = useRef(0);
@@ -103,7 +107,7 @@ export function ArtCarousel({
       <button
         type="button"
         onClick={() => nudge("prev")}
-        aria-label="Ver diseños anteriores"
+        aria-label={labels.carousel.prev}
         className="absolute left-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-luxury-gold/30 bg-luxury-black/80 text-luxury-gold backdrop-blur-sm transition-all hover:border-luxury-gold/60 hover:bg-luxury-gold/10"
       >
         <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -114,7 +118,7 @@ export function ArtCarousel({
       <button
         type="button"
         onClick={() => nudge("next")}
-        aria-label="Ver más diseños"
+        aria-label={labels.carousel.next}
         className="absolute right-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-luxury-gold/30 bg-luxury-black/80 text-luxury-gold backdrop-blur-sm transition-all hover:border-luxury-gold/60 hover:bg-luxury-gold/10"
       >
         <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -137,7 +141,8 @@ export function ArtCarousel({
             >
               <ArtImage
                 src={`${imageBasePath}/${id}.webp`}
-                alt={`Diseño premium Deluxe ${id}`}
+                alt={`${labels.gallery.premiumAlt} ${id}`}
+                locale={locale}
                 fill
                 sizes="130px"
                 className="pointer-events-none object-cover select-none"

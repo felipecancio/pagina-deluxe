@@ -1,8 +1,10 @@
 import Script from "next/script";
 import { META_CONTENT, META_PIXEL_ID } from "@/lib/meta-pixel";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
-export function MetaPixel() {
+export function MetaPixel({ locale }: { locale: Locale }) {
   const contentJson = JSON.stringify(META_CONTENT);
+  const pixelScript = getDictionary(locale).pixelScript;
 
   return (
     <>
@@ -18,7 +20,7 @@ export function MetaPixel() {
             n.queue=[];t=b.createElement(e);t.async=!0;
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
+            'https://connect.facebook.net/${pixelScript}/fbevents.js');
             fbq('init', '${META_PIXEL_ID}');
             fbq('track', 'PageView');
             fbq('track', 'ViewContent', ${contentJson});

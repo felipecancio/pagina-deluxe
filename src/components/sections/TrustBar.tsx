@@ -1,10 +1,12 @@
-import { TRUST_STATS } from "@/lib/constants";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
-export function TrustBar() {
+export function TrustBar({ locale }: { locale: Locale }) {
+  const stats = getDictionary(locale).trust;
+
   return (
     <section className="border-y border-white/5 bg-luxury-graphite/40">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px md:grid-cols-4">
-        {TRUST_STATS.map((item) => (
+        {stats.map((item) => (
           <div key={item.label} className="px-6 py-8 text-center">
             <p className="font-display text-2xl font-medium gold-gradient-text md:text-3xl">
               {item.value}

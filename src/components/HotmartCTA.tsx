@@ -1,5 +1,6 @@
 "use client";
 
+import { getDictionary, type Locale } from "@/lib/i18n";
 import { useHotmartFunnel } from "./HotmartSalesFunnel";
 
 interface HotmartCTAProps {
@@ -7,6 +8,7 @@ interface HotmartCTAProps {
   size?: "default" | "large";
   showDecline?: boolean;
   align?: "center" | "start";
+  locale?: Locale;
 }
 
 export function HotmartCTA({
@@ -14,8 +16,10 @@ export function HotmartCTA({
   size = "default",
   showDecline = true,
   align = "center",
+  locale = "es",
 }: HotmartCTAProps) {
   const { triggerAccept, triggerDecline } = useHotmartFunnel();
+  const copy = getDictionary(locale).hotmart;
 
   const yesSizeClasses =
     size === "large"
@@ -32,7 +36,7 @@ export function HotmartCTA({
         onClick={triggerAccept}
         className={`btn-gold w-full max-w-xl sm:w-auto ${yesSizeClasses}`}
       >
-        Sí, también quiero el Mega Pack Deluxe
+        {copy.accept}
       </button>
 
       {showDecline && (
@@ -41,7 +45,7 @@ export function HotmartCTA({
           onClick={triggerDecline}
           className="text-sm font-light text-white/35 underline-offset-4 transition-colors hover:text-white/55 hover:underline"
         >
-          No quiero esta oferta especial
+          {copy.decline}
         </button>
       )}
     </div>

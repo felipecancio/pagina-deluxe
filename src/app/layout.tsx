@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { headers } from "next/headers";
 import { MetaPixel } from "@/components/MetaPixel";
 import { PricingScroll } from "@/components/PricingScroll";
+import { buildMetadata, getDictionary, type Locale } from "@/lib/i18n";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -20,58 +22,27 @@ const outfit = Outfit({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://mp-deluxe.vercel.app"),
-  title: "Mega Pack Deluxe — Criativarts",
-  description:
-    "La colección más exclusiva de Criativarts. Más de 200 diseños premium con alto valor percibido, uso comercial y actualizaciones de por vida para elevar tus productos.",
-  keywords: [
-    "Mega Pack Deluxe",
-    "Criativarts",
-    "diseños premium",
-    "diseños exclusivos",
-    "alta resolución",
-    "uso comercial",
-    "DTF",
-    "sublimación",
-  ],
-  openGraph: {
-    title: "Mega Pack Deluxe — Criativarts",
-    description:
-      "Diseños exclusivos de alto valor percibido para cuadros, playeras, DTF y productos premium.",
-    url: "/",
-    siteName: "Mega Pack Deluxe",
-    type: "website",
-    locale: "es_LA",
-    images: [
-      {
-        url: "/og.jpg",
-        width: 1200,
-        height: 630,
-        type: "image/jpeg",
-        alt: "Mega Pack Deluxe — Colección Premium Criativarts",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Mega Pack Deluxe — Criativarts",
-    description:
-      "Diseños exclusivos de alto valor percibido para cuadros, playeras, DTF y productos premium.",
-    images: ["/og.jpg"],
-  },
-  robots: { index: true, follow: true },
-};
+async function requestLocale(): Promise<Locale> {
+  const headerList = await headers();
+  return headerList.get("x-locale") === "pt" ? "pt" : "es";
+}
 
-export default function RootLayout({
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata(await requestLocale());
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await requestLocale();
+  const t = getDictionary(locale);
+
   return (
-    <html lang="es" className={`${cormorant.variable} ${outfit.variable}`}>
+    <html lang={t.htmlLang} className={`${cormorant.variable} ${outfit.variable}`}>
       <body className="antialiased">
-        <MetaPixel />
+        <MetaPixel locale={locale} />
         <PricingScroll />
         {children}
       </body>
