@@ -16,6 +16,7 @@ export type Dictionary = {
   };
   cta: string;
   ctaHint: string;
+  checkoutUrl: string;
   header: {
     designs: string;
     includes: string;
@@ -132,6 +133,7 @@ const es: Dictionary = {
   },
   cta: "Quiero el Mega Pack Deluxe",
   ctaHint: "Acceso inmediato · Uso comercial · Actualizaciones de por vida",
+  checkoutUrl: "https://pay.hotmart.com/E106660148F?checkoutMode=10",
   header: {
     designs: "Diseños",
     includes: "Qué incluye",
@@ -391,6 +393,8 @@ const pt: Dictionary = {
   },
   cta: "Quero o Mega Pack Deluxe",
   ctaHint: "Acesso imediato · Uso comercial · Atualizações vitalícias",
+  checkoutUrl:
+    "https://pay.hotmart.com/E106660148F?off=vv6dld46&checkoutMode=10",
   header: {
     designs: "Artes",
     includes: "O que inclui",

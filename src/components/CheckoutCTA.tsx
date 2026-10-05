@@ -1,6 +1,5 @@
 "use client";
 
-import { CHECKOUT_URL } from "@/lib/constants";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { META_CONTENT, trackMeta } from "@/lib/meta-pixel";
 
@@ -35,7 +34,7 @@ export function CheckoutCTA({
   return (
     <div className={`flex flex-col gap-3 ${alignClasses} ${className}`}>
       <a
-        href={checkout ? CHECKOUT_URL : "#comprar"}
+        href={checkout ? copy.checkoutUrl : "#comprar"}
         id={checkout ? "cta-checkout" : undefined}
         className={`btn-gold w-full max-w-xl sm:w-auto ${yesSizeClasses}`}
         onClick={
