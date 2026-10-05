@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { localeFromPath } from "@/lib/i18n";
+
+function localeFromPath(pathname: string) {
+  return pathname === "/br" || pathname.startsWith("/br/") ? "pt" : "es";
+}
 
 export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);

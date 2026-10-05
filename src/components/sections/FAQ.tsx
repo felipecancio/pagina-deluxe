@@ -1,5 +1,3 @@
-"use client";
-
 import { AnimatedSection } from "../AnimatedSection";
 import { getDictionary, type Locale } from "@/lib/i18n";
 

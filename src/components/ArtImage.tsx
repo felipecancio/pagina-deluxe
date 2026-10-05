@@ -51,7 +51,7 @@ export function MockupImage({
       alt="Mega Pack Deluxe — Criativarts"
       className={`bg-transparent object-contain ${className}`}
       priority={priority}
-      quality={90}
+      quality={75}
       {...props}
     />
   );

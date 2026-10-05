@@ -52,7 +52,7 @@ export function WhatsAppSupport({ locale }: { locale: Locale }) {
         <button
           type="button"
           onClick={openWhatsApp}
-          className="rounded-full border border-luxury-gold/40 bg-luxury-black/95 px-4 py-2 text-xs font-light tracking-wide text-white/85 shadow-gold backdrop-blur-md transition-colors hover:border-luxury-gold hover:text-luxury-gold"
+          className="rounded-full border border-luxury-gold/40 bg-luxury-black/95 px-4 py-2 text-xs font-light tracking-wide text-white/85 shadow-gold transition-colors hover:border-luxury-gold hover:text-luxury-gold"
         >
           {copy.talk}
         </button>
@@ -67,7 +67,7 @@ export function WhatsAppSupport({ locale }: { locale: Locale }) {
             ? copy.talkAria
             : copy.openAria
         }
-        className="flex h-12 w-12 items-center justify-center rounded-full border border-luxury-gold/40 bg-luxury-black/90 text-luxury-gold shadow-gold backdrop-blur-md transition-all duration-300 hover:border-luxury-gold hover:shadow-gold-lg hover:scale-105 active:scale-95"
+        className="flex h-12 w-12 items-center justify-center rounded-full border border-luxury-gold/40 bg-luxury-black/95 text-luxury-gold shadow-gold transition-all duration-300 hover:border-luxury-gold hover:shadow-gold-lg hover:scale-105 active:scale-95"
       >
         <svg
           className="h-6 w-6"

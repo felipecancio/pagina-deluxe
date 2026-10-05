@@ -10,10 +10,21 @@ export function HeroArtGrid({ locale }: { locale: Locale }) {
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
-    const apply = () => setShow(mq.matches);
+    let timer = 0;
+    const apply = () => {
+      window.clearTimeout(timer);
+      if (!mq.matches) {
+        setShow(false);
+        return;
+      }
+      timer = window.setTimeout(() => setShow(true), 800);
+    };
     apply();
     mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    return () => {
+      window.clearTimeout(timer);
+      mq.removeEventListener("change", apply);
+    };
   }, []);
 
   if (!show) return null;

@@ -1,7 +1,6 @@
 import { AnimatedSection } from "../AnimatedSection";
 import { CheckoutCTA } from "../CheckoutCTA";
 import { IconCheck } from "../Icons";
-import Image from "next/image";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
 export function FinalCTA({ locale }: { locale: Locale }) {
@@ -23,13 +22,16 @@ export function FinalCTA({ locale }: { locale: Locale }) {
 
           <div className="mx-auto mt-10 flex items-center justify-center">
             <div className="animate-float">
-              <Image
-                src="/images/mockup-hero.webp"
+              {/* Same cached file as the hero, loaded only when this section is reached. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/mockup-hero-640.webp"
                 alt={t.mockupAlt}
-                width={720}
-                height={550}
-                quality={80}
-                sizes="(min-width: 1024px) 520px, 420px"
+                width={1024}
+                height={785}
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
                 className="h-auto w-full max-w-[400px] object-contain sm:max-w-[420px] lg:max-w-[520px]"
               />
             </div>

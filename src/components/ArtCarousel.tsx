@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import { ArtImage } from "./ArtImage";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
@@ -31,6 +31,7 @@ export function ArtCarousel({
 }: ArtCarouselProps) {
   const labels = getDictionary(locale);
   const trackRef = useRef<HTMLDivElement>(null);
+  const [full, setFull] = useState(false);
   const halfWidthRef = useRef(0);
   const positionRef = useRef(0);
   const defaultVelocity = direction === "left" ? -0.45 : 0.45;
@@ -61,8 +62,27 @@ export function ArtCarousel({
   );
 
   useEffect(() => {
+    const root = trackRef.current?.parentElement;
+    if (!root) return;
+    const mq = window.matchMedia("(max-width: 1023px)");
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting || !mq.matches) return;
+        setFull(true);
+        observer.disconnect();
+      },
+      { rootMargin: "160px" }
+    );
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!full) return;
     const track = trackRef.current;
     if (!track) return;
+    initializedRef.current = false;
 
     const measure = () => {
       halfWidthRef.current = track.scrollWidth / 2;
@@ -98,9 +118,9 @@ export function ArtCarousel({
       observer.disconnect();
       io.disconnect();
     };
-  }, [applyWrap, direction, images]);
+  }, [applyWrap, direction, full, images]);
 
-  const doubled = [...images, ...images];
+  const slides = full ? [...images, ...images] : images.slice(0, 3);
 
   return (
     <div className="relative w-full min-w-0 overflow-hidden touch-pan-y">
@@ -108,7 +128,7 @@ export function ArtCarousel({
         type="button"
         onClick={() => nudge("prev")}
         aria-label={labels.carousel.prev}
-        className="absolute left-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-luxury-gold/30 bg-luxury-black/80 text-luxury-gold backdrop-blur-sm transition-all hover:border-luxury-gold/60 hover:bg-luxury-gold/10"
+        className="absolute left-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-luxury-gold/30 bg-luxury-black/90 text-luxury-gold transition-all hover:border-luxury-gold/60 hover:bg-luxury-gold/10"
       >
         <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
@@ -119,7 +139,7 @@ export function ArtCarousel({
         type="button"
         onClick={() => nudge("next")}
         aria-label={labels.carousel.next}
-        className="absolute right-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-luxury-gold/30 bg-luxury-black/80 text-luxury-gold backdrop-blur-sm transition-all hover:border-luxury-gold/60 hover:bg-luxury-gold/10"
+        className="absolute right-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-luxury-gold/30 bg-luxury-black/90 text-luxury-gold transition-all hover:border-luxury-gold/60 hover:bg-luxury-gold/10"
       >
         <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
@@ -134,20 +154,23 @@ export function ArtCarousel({
           ref={trackRef}
           className="pointer-events-none flex w-max select-none gap-3 will-change-transform"
         >
-          {doubled.map((id, i) => (
+          {slides.map((id, i) => (
             <div
               key={`${id}-${i}`}
-              className="relative h-52 w-[130px] shrink-0 overflow-hidden rounded-lg"
+              className="relative h-52 w-[130px] shrink-0 overflow-hidden rounded-lg bg-luxury-graphite"
             >
-              <ArtImage
-                src={`${imageBasePath}/${id}.webp`}
-                alt={`${labels.gallery.premiumAlt} ${id}`}
-                locale={locale}
-                fill
-                sizes="130px"
-                className="pointer-events-none object-cover select-none"
-                draggable={false}
-              />
+              {full ? (
+                <ArtImage
+                  src={`${imageBasePath}/${id}.webp`}
+                  alt={`${labels.gallery.premiumAlt} ${id}`}
+                  locale={locale}
+                  fill
+                  sizes="130px"
+                  loading="lazy"
+                  className="pointer-events-none object-cover select-none"
+                  draggable={false}
+                />
+              ) : null}
             </div>
           ))}
         </div>

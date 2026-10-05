@@ -28,7 +28,7 @@
   }
 
   .luxury-card {
-    @apply rounded-2xl border border-white/5 bg-luxury-graphite/50 backdrop-blur-sm transition-all duration-500;
+    @apply rounded-2xl border border-white/5 bg-luxury-graphite/80 transition-all duration-500;
   }
 
   .luxury-card:hover {

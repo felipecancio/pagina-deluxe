@@ -8,11 +8,12 @@ import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "500"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
   preload: true,
+  adjustFontFallback: true,
 });
 
 const outfit = Outfit({
@@ -20,6 +21,8 @@ const outfit = Outfit({
   weight: ["300", "400", "500", "600"],
   variable: "--font-outfit",
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 async function requestLocale(): Promise<Locale> {

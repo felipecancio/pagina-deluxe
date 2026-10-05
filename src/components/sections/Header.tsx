@@ -3,7 +3,7 @@ import { getDictionary, type Locale } from "@/lib/i18n";
 export function Header({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).header;
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-luxury-black/80 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-luxury-black/95">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-12">
         <a href="#inicio" className="font-display text-lg font-light tracking-wide text-white/90">
           Mega Pack{" "}
