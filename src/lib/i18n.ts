@@ -559,6 +559,7 @@ const pt: Dictionary = {
       "Atualizações grátis e vitalícias",
       "Acesso imediato depois da compra",
       "Ideal para quadros, camisetas, canecas e presentes premium",
+      "Receba acesso direto ao Drive organizado (baixe de uma vez ou à medida que quiser)",
     ],
     secure: "Pagamento seguro",
     mockupAlt: "Mega Pack Deluxe — Coleção Premium Criativarts",
