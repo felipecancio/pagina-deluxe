@@ -27,6 +27,7 @@ export type Dictionary = {
     badge: string;
     subtitle: string;
     body: string;
+    aboveCta?: string;
     mockupAlt: string;
   };
   trust: { value: string; label: string }[];
@@ -405,7 +406,9 @@ const pt: Dictionary = {
     badge: "Coleção Premium",
     subtitle:
       "Artes exclusivas de alto valor percebido para produtos que vendem como luxo.",
-    body: "Não é mais um pack qualquer. É uma curadoria premium de arte sofisticada, pronta para quadros, camisetas, DTF, sublimação e presentes que merecem um preço mais alto. Acesso imediato. Uso comercial incluso.",
+    body: "Não é mais um pack de artes. O Mega Pack Deluxe foi pensado para pessoas que querem se diferenciar dos concorrentes. Essa coleção foi produzida com artes novas, atuais, dos temas mais procurados pra quem deseja vender artigos luxuosos com muito valor percebido.",
+    aboveCta:
+      "Receba acesso imediato a um arsenal de artes em alta resolução exclusivas, para fazer quadros de qualquer tamanho ou qualquer projeto que demande artes diferentes de todas as outras.",
     mockupAlt: "Mega Pack Deluxe — Coleção Premium Criativarts",
   },
   trust: [
@@ -440,10 +443,10 @@ const pt: Dictionary = {
     body: "Feita para empreendedores e negócios que querem produto com cara de luxo — e uma margem à altura.",
   },
   gallery: {
-    eyebrow: "Prévia",
-    titleBefore: "Arte que parece",
-    titleHighlight: "exclusiva",
-    body: "Uma amostra da curadoria Deluxe. Peças pensadas para ficarem sofisticadas no produto final — não para encher pasta.",
+    eyebrow: "Prévias",
+    titleBefore: "Designs únicos que você só acha no",
+    titleHighlight: "Deluxe",
+    body: "Uma amostra das artes e estilos que você vai encontrar no pack completo. Tudo organizado, fácil de achar e baixar, além da qualidade única das imagens. Cada arte foi pensada pra ser única e dar um tom especial no produto final.",
     exclusiveAlt: "Arte exclusiva Deluxe",
     premiumAlt: "Arte premium Deluxe",
     footnote:

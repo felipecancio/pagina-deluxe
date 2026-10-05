@@ -23,8 +23,9 @@ export function CheckoutCTA({
   locale,
 }: CheckoutCTAProps) {
   const copy = getDictionary(locale);
-  const yesSizeClasses =
-    size === "large"
+  const yesSizeClasses = checkout
+    ? "px-11 py-5 text-base md:px-14 md:py-6 md:text-lg"
+    : size === "large"
       ? "px-10 py-5 text-base tracking-[0.12em] md:tracking-[0.15em]"
       : "px-8 py-4 text-sm tracking-[0.1em]";
 
@@ -36,7 +37,7 @@ export function CheckoutCTA({
       <a
         href={checkout ? copy.checkoutUrl : "#comprar"}
         id={checkout ? "cta-checkout" : undefined}
-        className={`btn-gold w-full max-w-xl sm:w-auto ${yesSizeClasses}`}
+        className={`${checkout ? "btn-checkout" : "btn-gold"} w-full max-w-xl sm:w-auto ${yesSizeClasses}`}
         onClick={
           checkout
             ? () => trackMeta("InitiateCheckout", { ...META_CONTENT })

@@ -19,17 +19,17 @@ export function WhyDeluxe({ locale }: { locale: Locale }) {
             <div className="gold-line mx-auto mt-6 w-16" />
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
             {t.items.map((item, i) => (
               <div
                 key={item.title}
-                className="luxury-card group p-8"
+                className="luxury-card group p-4 sm:p-8"
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-luxury-gold/20 bg-luxury-gold/5 text-luxury-gold transition-colors duration-500 group-hover:border-luxury-gold/40 group-hover:bg-luxury-gold/10">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-luxury-gold/20 bg-luxury-gold/5 text-luxury-gold transition-colors duration-500 group-hover:border-luxury-gold/40 group-hover:bg-luxury-gold/10 sm:mb-5 sm:h-12 sm:w-12">
                   <FeatureIcon name={item.icon} className="h-5 w-5" />
                 </div>
-                <h3 className="font-display text-xl font-medium">
+                <h3 className="font-display text-lg font-medium sm:text-xl">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm font-light text-white/50">

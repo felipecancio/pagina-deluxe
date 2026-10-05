@@ -123,6 +123,11 @@ export function Hero({ locale }: { locale: Locale }) {
         <HeroArtGrid locale={locale} />
 
         <div className="mt-10 flex flex-col items-center">
+          {t.aboveCta ? (
+            <p className="mb-8 max-w-2xl text-center text-sm font-light leading-relaxed text-white/70 md:text-base lg:text-lg">
+              {t.aboveCta}
+            </p>
+          ) : null}
           <CheckoutCTA locale={locale} size="large" />
         </div>
       </div>

@@ -8,7 +8,7 @@ export function Gallery({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).gallery;
   return (
     <AnimatedSection>
-      <section id="galeria" className="section-padding !pt-8">
+      <section id="galeria" className="section-padding !pt-16 md:!pt-24 lg:!pt-28">
         <div className="mx-auto max-w-7xl">
           <div className="mb-14 text-center">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-luxury-gold">
