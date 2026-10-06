@@ -48,6 +48,11 @@ export type Dictionary = {
     premiumAlt: string;
     footnote: string;
   };
+  themes?: {
+    titleBefore: string;
+    titleHighlight: string;
+    items: string[];
+  };
   testimonials: {
     eyebrow: string;
     titleBefore: string;
@@ -452,6 +457,20 @@ const pt: Dictionary = {
     footnote:
       "Isso é só uma amostra. O pack completo tem mais de 200 artes exclusivas.",
   },
+  themes: {
+    titleBefore: "Material sofisticado,",
+    titleHighlight: "temas exclusivos",
+    items: [
+      "Luxo & Poder",
+      "Animais Majestosos",
+      "Beleza & Sofisticação",
+      "Texturas Nobres",
+      "Personalidades & Pop Art",
+      "Automobilismo",
+      "Natureza",
+      "Arquitetura Moderna",
+    ],
+  },
   testimonials: {
     eyebrow: "Depoimentos",
     titleBefore: "O que diz quem já tem o",
@@ -480,8 +499,8 @@ const pt: Dictionary = {
   },
   why: {
     eyebrow: "A diferença",
-    titleBefore: "Por que seus produtos parecem mais",
-    titleHighlight: "caros",
+    titleBefore: "Por isso seus produtos vão ter",
+    titleHighlight: "mais valor",
     items: [
       {
         title: "Artes premium",
